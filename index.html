@@ -1,0 +1,113 @@
+<html>
+  <head>
+    <base href="" />
+    <style class="fcc-hide-header">
+      head *,
+      title,
+      meta,
+      link,
+      script {
+        display: none !important;
+      }
+    </style>
+    <script>
+      window.__frameId = "fcc-project-preview-frame";
+      function __fccAlertParent(variant, externalLink) {
+        window.parent.postMessage(
+          {
+            type: "fcc:preview:alert",
+            variant: variant,
+            externalLink: externalLink,
+          },
+          "https://www.freecodecamp.org",
+        );
+      }
+      window.onerror = function (msg) {
+        const string = msg.toLowerCase();
+        if (string.includes("script error")) {
+          msg = "Build error, open your browser console to learn more.";
+        }
+        console.log(msg);
+        return true;
+      };
+      document.addEventListener(
+        "click",
+        function (e) {
+          let element = e.target;
+          while (element && element.nodeName !== "A") {
+            element = element.parentElement;
+          }
+          if (
+            element &&
+            element.nodeName === "A" &&
+            new URL(element.href).hash === ""
+          ) {
+            e.preventDefault();
+            __fccAlertParent("external-link", element.href);
+          }
+          if (element) {
+            const href = element.getAttribute("href");
+            if (!href || (href[0] !== "#" && !href.match(/^https?:\/\//))) {
+              e.preventDefault();
+            } else if (href.match(/^#.+/)) {
+              e.preventDefault();
+              const scrollId = href.substring(1);
+              window.location.hash = scrollId;
+            }
+          }
+        },
+        false,
+      );
+      document.addEventListener(
+        "submit",
+        function (e) {
+          const action = e.target.getAttribute("action");
+          e.preventDefault();
+          if (action && action.match(/https?:\/\//)) {
+            __fccAlertParent("external-form", action);
+          }
+        },
+        false,
+      );
+    </script>
+    <meta charset="UTF-8" />
+    <title>Piano</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="stylesheet" href="styles.css" />
+  </head>
+
+  <body>
+    <div id="piano">
+      <img
+        class="logo"
+        src="https://cdn.freecodecamp.org/platform/universal/fcc_primary.svg"
+        alt="freeCodeCamp Logo"
+      />
+      <div class="keys">
+        <div class="key"></div>
+        <div class="key black--key"></div>
+        <div class="key black--key"></div>
+        <div class="key"></div>
+        <div class="key black--key"></div>
+        <div class="key black--key"></div>
+        <div class="key black--key"></div>
+
+        <div class="key"></div>
+        <div class="key black--key"></div>
+        <div class="key black--key"></div>
+        <div class="key"></div>
+        <div class="key black--key"></div>
+        <div class="key black--key"></div>
+        <div class="key black--key"></div>
+
+        <div class="key"></div>
+        <div class="key black--key"></div>
+        <div class="key black--key"></div>
+        <div class="key"></div>
+        <div class="key black--key"></div>
+        <div class="key black--key"></div>
+        <div class="key black--key"></div>
+      </div>
+    </div>
+  </body>
+</html>
